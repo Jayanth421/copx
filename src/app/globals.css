@@ -1,0 +1,184 @@
+@import "tailwindcss";
+
+:root {
+  --font-body: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Trebuchet MS", "Arial Narrow", "Segoe UI", sans-serif;
+  --bg-base: #f5f7ef;
+  --bg-soft: #e8ecff;
+  --bg-warm: #fff7cc;
+  --text: #121625;
+  --text-muted: #4b556f;
+  --surface: rgba(255, 255, 255, 0.82);
+  --surface-strong: #ffffff;
+  --surface-border: rgba(18, 22, 37, 0.12);
+  --shadow: 0 20px 55px rgba(12, 16, 33, 0.12);
+  --primary: #121625;
+  --primary-hover: #252b45;
+  --accent-lime: #d3ff28;
+  --accent-pink: #ff5da9;
+  --accent-blue: #43c7ff;
+  --ring: rgba(67, 199, 255, 0.42);
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  color: var(--text);
+  font-family: var(--font-body), "Segoe UI", sans-serif;
+  background:
+    radial-gradient(circle at 8% 4%, rgba(211, 255, 40, 0.28), transparent 34%),
+    radial-gradient(circle at 90% 10%, rgba(67, 199, 255, 0.25), transparent 36%),
+    radial-gradient(circle at 70% 88%, rgba(255, 93, 169, 0.18), transparent 40%),
+    linear-gradient(165deg, var(--bg-base), var(--bg-soft) 55%, var(--bg-warm));
+  background-attachment: fixed;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.app-chrome {
+  position: relative;
+  min-height: 100vh;
+}
+
+.app-chrome::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: linear-gradient(
+      rgba(18, 22, 37, 0.035) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(18, 22, 37, 0.035) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(circle at center, black 20%, transparent 85%);
+}
+
+.glass-card {
+  position: relative;
+  border-radius: 1.3rem;
+  border: 1px solid var(--surface-border);
+  background: var(--surface);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.glass-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: linear-gradient(
+    125deg,
+    rgba(255, 255, 255, 0.6),
+    rgba(255, 255, 255, 0) 40%
+  );
+}
+
+.ui-primary-btn,
+.ui-secondary-btn {
+  height: 2.8rem;
+  border-radius: 0.9rem;
+  padding: 0 1rem;
+  font-size: 0.89rem;
+  font-weight: 700;
+  transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+}
+
+.ui-primary-btn:hover,
+.ui-secondary-btn:hover {
+  transform: translateY(-1px);
+}
+
+.ui-primary-btn {
+  color: #fff;
+  background: var(--primary);
+  box-shadow: 0 8px 20px rgba(18, 22, 37, 0.26);
+}
+
+.ui-primary-btn:hover {
+  background: var(--primary-hover);
+}
+
+.ui-secondary-btn {
+  color: var(--text);
+  border: 1px solid var(--surface-border);
+  background: var(--surface-strong);
+}
+
+.ui-input,
+.ui-select {
+  height: 2.8rem;
+  width: 100%;
+  border-radius: 0.9rem;
+  border: 1px solid rgba(77, 92, 136, 0.26);
+  background: rgba(255, 255, 255, 0.95);
+  padding: 0 0.78rem;
+  font-size: 0.92rem;
+  color: var(--text);
+  outline: none;
+  transition: box-shadow 180ms ease, border-color 180ms ease, background-color 180ms ease;
+}
+
+.ui-input:focus,
+.ui-select:focus {
+  border-color: rgba(67, 199, 255, 0.7);
+  box-shadow: 0 0 0 4px var(--ring);
+}
+
+.ui-msg-success {
+  border-radius: 0.8rem;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  background: rgba(16, 185, 129, 0.11);
+  color: #0f5132;
+  padding: 0.55rem 0.72rem;
+  font-size: 0.88rem;
+}
+
+.ui-msg-error {
+  border-radius: 0.8rem;
+  border: 1px solid rgba(244, 63, 94, 0.28);
+  background: rgba(254, 205, 211, 0.42);
+  color: #9f1239;
+  padding: 0.55rem 0.72rem;
+  font-size: 0.88rem;
+}
+
+.animate-fade-up {
+  animation: fade-up 420ms ease-out both;
+}
+
+.animate-glow {
+  animation: glow-pulse 3.2s ease-in-out infinite;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(211, 255, 40, 0.32);
+  }
+
+  50% {
+    box-shadow: 0 0 0 10px rgba(211, 255, 40, 0);
+  }
+}
